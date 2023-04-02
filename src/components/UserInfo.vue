@@ -1,26 +1,22 @@
 <script setup>
+import { storeToRefs } from 'pinia'
 import { useUserInfoStore } from '../stores/userInfo'
 import SafeArea from '../components/SafeArea.vue'
 import IconGender from '../components/icons/IconGender.vue'
 import IconFollow from '../components/icons/IconFollow.vue'
 import IconChat from '../components/icons/IconChat.vue'
 const store = useUserInfoStore()
-const userInfo = store.userInfo
-const showMore =
-  userInfo.age?.show ||
-  userInfo.gender?.show ||
-  userInfo.jobs?.show ||
-  userInfo.location?.show ||
-  userInfo.school?.show
+const { userInfo, showMore, iconImg, bgImg } = storeToRefs(store)
 </script>
 
 <template>
   <div class="userInfoWrap">
+    <!-- TODO: -->
     <!-- bgimg -->
-    <!-- <div class="bgWrap">
+    <div class="bgWrap">
       <div class="mask"></div>
-      <img :src="userInfo.bg" alt="bgImg" class="bgImg" />
-    </div> -->
+      <img :src="bgImg" alt="bgImg" class="bgImg" />
+    </div>
     <!-- userinfo -->
     <SafeArea />
     <div class="user">
@@ -64,7 +60,7 @@ const showMore =
       <div class="content">
         <div class="userCard">
           <div class="icon">
-            <img :src="userInfo.icon" alt="user-icon" />
+            <img :src="iconImg" alt="user-icon" />
           </div>
           <div class="nameBox">
             <div class="username">{{ userInfo.username }}</div>
@@ -75,21 +71,18 @@ const showMore =
 
         <div class="introduce" v-if="!!userInfo.introduce">{{ userInfo.introduce }}</div>
         <div class="more" v-if="showMore">
-          <span class="tag" v-if="userInfo.gender?.show || userInfo.age?.show"
-            ><IconGender :gender="userInfo.gender.gender" /><span
-              v-if="userInfo.age?.show"
+          <span class="tag" v-if="userInfo.showGender || userInfo.showAge"
+            ><IconGender :gender="userInfo.gender" /><span
+              v-if="userInfo.showAge"
               style="margin-left: 4px"
-              >{{ userInfo?.age?.age }} 岁</span
+              >{{ userInfo?.age }} 岁</span
             ></span
           >
-          <span class="tag" v-if="userInfo.location?.show">{{ userInfo.location?.location }}</span>
-          <span class="tag" v-if="userInfo.jobs?.show" v-for="item in userInfo.jobs?.jobs">{{
-            item
-          }}</span>
-          <span class="tag" v-if="userInfo.school?.show">{{ userInfo.school?.school }}</span>
+          <span class="tag" v-if="userInfo.showLocation">{{ userInfo.location }}</span>
+          <span class="tag" v-if="userInfo.showJobs">{{ userInfo.jobs }}</span>
+          <span class="tag" v-if="userInfo.showSchool">{{ userInfo?.school }}</span>
         </div>
       </div>
-
       <div class="bottom">
         <div class="nums">
           <div class="numBox">
@@ -129,6 +122,8 @@ const showMore =
 }
 .bgImg {
   height: 100%;
+  width: 100%;
+  object-fit: fill;
 }
 .bar {
   height: 36px;
@@ -178,6 +173,7 @@ const showMore =
   margin-bottom: 12px;
   color: #fff;
   font-size: 14px;
+  white-space: pre-line;
 }
 
 .more {
