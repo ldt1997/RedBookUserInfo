@@ -123,7 +123,7 @@ const { userInfo, showMore, iconImg, bgImg } = storeToRefs(store)
   height: 100%;
 }
 .bgImg {
-  height: max-content;
+  /* height: max-content; */
   width: 100%;
   object-fit: cover;
   object-position: center top;
