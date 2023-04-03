@@ -11,10 +11,12 @@ const { userInfo, showMore, iconImg, bgImg } = storeToRefs(store)
 
 <template>
   <div class="userInfoWrap">
-    <!-- TODO: -->
     <!-- bgimg -->
-    <div class="bgWrap">
-      <div class="mask"></div>
+    <div class="bgWrap" :style="{ background: userInfo.domainColor }">
+      <div
+        class="mask"
+        :style="{ background: `linear-gradient(rgba(0, 0, 0, 0), ${userInfo.domainColor})` }"
+      ></div>
       <img :src="bgImg" alt="bgImg" class="bgImg" />
     </div>
     <!-- userinfo -->
@@ -121,9 +123,17 @@ const { userInfo, showMore, iconImg, bgImg } = storeToRefs(store)
   height: 100%;
 }
 .bgImg {
+  height: max-content;
+  width: 100%;
+  object-fit: cover;
+  object-position: center top;
+  z-index: -2;
+}
+.mask {
   height: 100%;
   width: 100%;
-  object-fit: fill;
+  position: absolute;
+  z-index: -1;
 }
 .bar {
   height: 36px;

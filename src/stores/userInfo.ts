@@ -19,15 +19,18 @@ export interface IUserInfo {
   jobs?: string // FIXME: multi
   showSchool?: boolean
   school?: string
+  domainColor?: string
 }
 
 export const useUserInfoStore = defineStore('userInfo', () => {
   const userInfo = ref<IUserInfo>({
     username: '小红薯',
-    icon: [defaultIcon],
-    bg: [testBg],
+    icon: [],
+    bg: [],
     introduce: '这是简介',
-    showAge: false
+    showAge: false,
+    // FIXME: not good
+    domainColor: '#c6e1e8'
   })
   const showMore = computed(() =>
     Boolean(
@@ -40,11 +43,11 @@ export const useUserInfoStore = defineStore('userInfo', () => {
   )
   const iconImg = computed(() => {
     const target = userInfo.value?.icon?.[0]
-    return (typeof target === 'string' ? target : target?.content) || defaultIcon
+    return target?.content || defaultIcon
   })
   const bgImg = computed(() => {
     const target = userInfo.value?.bg?.[0]
-    return (typeof target === 'string' ? target : target?.content) || testBg
+    return target?.content || testBg
   })
   function setUserInfo(payload: IUserInfo) {
     this.userInfo = {
@@ -52,6 +55,12 @@ export const useUserInfoStore = defineStore('userInfo', () => {
       ...payload
     }
   }
+  function setDomainColor(payload: string) {
+    this.userInfo = {
+      ...this.userInfo,
+      domainColor: payload
+    }
+  }
 
-  return { userInfo, showMore, iconImg, bgImg, setUserInfo }
+  return { userInfo, showMore, iconImg, bgImg, setUserInfo, setDomainColor }
 })

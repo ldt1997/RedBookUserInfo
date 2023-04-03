@@ -11,6 +11,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "colorthief": "^2.4.0",
+    "cropperjs": "^1.5.13",
     "pinia": "^2.0.32",
     "vant": "^4.1.2",
     "vue": "^3.2.47",
