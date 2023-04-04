@@ -18,7 +18,10 @@ async function base64ToImage(base64) {
 }
 
 export const getDomainColor = async (base64) => {
-  const img = await base64ToImage(base64)
-  const [r, g, b] = colorThief.getColor(img)
-  return `rgb(${r},${g},${b})`
+  if (base64) {
+    const img = await base64ToImage(base64)
+    const [r, g, b] = colorThief.getColor(img)
+    return `rgb(${r},${g},${b})`
+  }
+  return 'rgb(198,225,232)'
 }
