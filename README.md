@@ -1,28 +1,25 @@
-# vue-project
+# 小红书个人页预览工具
 
-This template should help get you started developing with Vue 3 in Vite.
+Xiaohongshu APP User Info Preview Tool.
 
-## Recommended IDE Setup
+- GitHub Page：https://ldt1997.github.io/RedBookUserInfo/
+- vercel：https://redbook-info.vercel.app/
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+![Example Image](./src/assets/sample.png)
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+## Setup
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Development
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Compile
 
 ```sh
 npm run build
